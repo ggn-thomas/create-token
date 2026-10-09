@@ -151,7 +151,6 @@ fn process_instruction(
             associated_token_program.clone(),
         ],
     )?;
-
     // Miné un token vers un compte token associé
     //
     msg!("Minning token to associated token account...");
