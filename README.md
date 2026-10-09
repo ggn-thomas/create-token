@@ -1,3 +1,3 @@
-# Create Token
+# Create Token Solana
 
-Create token program - natif rust
+A native Rust implementation of a Solana token creation program.

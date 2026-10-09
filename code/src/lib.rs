@@ -22,7 +22,7 @@ use solana_program::{
     program_pack::Pack,
 };
 
-// structure de donnée
+// data struct
 #[derive(BorshDeserialize, BorshSerialize, Debug)]
 pub struct CreateTokenArgs {
     pub token_title: String,
@@ -32,7 +32,7 @@ pub struct CreateTokenArgs {
     pub initial_supply: u64,
 }
 
-entrypoint!(process_instruction); // gère la désérialisation des données dans les paramètres de la fonction process_instruction
+entrypoint!(process_instruction); // handles the deserialization of data in the parameters of the process_instruction function
 
 fn process_instruction(
     _program_id: &Pubkey,
@@ -42,9 +42,9 @@ fn process_instruction(
 
     let args = CreateTokenArgs::try_from_slice(instruction_data)?;
 
-    // renvoie un index sur le premier compte
+    // returns an index for the first account
     //
-    let accounts_iter = &mut accounts.iter(); //référence sur l'itérateur, mut = on peut modifier la référence de celui-ci
+    let accounts_iter = &mut accounts.iter(); // reference to the iterator, mut = you can modify the ref to it
 
     let mint_account = next_account_info(accounts_iter)?;
     let mint_authority = next_account_info(accounts_iter)?;
@@ -57,7 +57,7 @@ fn process_instruction(
     let token_metadata_program = next_account_info(accounts_iter)?;
     let associated_token_program = next_account_info(accounts_iter)?;
 
-    // créer le compte pour le mint
+    // create mint account
     //
     msg!("Creating mint account...");
 
@@ -77,7 +77,7 @@ fn process_instruction(
         ],
     )?;
 
-    // initialiser le compte mint
+    // init mint account
     //
     msg!("Initializing mint...");
     invoke(
@@ -96,7 +96,7 @@ fn process_instruction(
         ],
     )?;
 
-    // Créer le compte pour stocker les métadonnées du token
+    // create metadata account
     //
     msg!("Creating metadata account...");
     invoke(
@@ -132,7 +132,7 @@ fn process_instruction(
         ],
     )?;
 
-    // Créer le compte de token pour stocker la supply
+    // create supply account
     //
     msg!("Creating associated token account...");
     invoke(
