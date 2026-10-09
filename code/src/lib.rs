@@ -132,7 +132,7 @@ fn process_instruction(
         ],
     )?;
 
-    // create supply account
+    // create associated token account
     //
     msg!("Creating associated token account...");
     invoke(
@@ -151,7 +151,7 @@ fn process_instruction(
             associated_token_program.clone(),
         ],
     )?;
-    // Miné un token vers un compte token associé
+    // mint token
     //
     msg!("Minning token to associated token account...");
     invoke(
